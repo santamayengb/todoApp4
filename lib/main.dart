@@ -1,9 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp4/cubit/todo_cubit.dart';
+import 'package:todoapp4/model/todo_model.dart';
 import 'package:todoapp4/pages/home_page.dart';
-
-import 'model/todo_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,13 +24,12 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           body: const MyHomePage(),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              final todocubit = context.read<TodoCubit>();
-              final newtodo = TodoModel(name: "test", dis: "test");
-              todocubit.addTodo(newtodo);
-            },
-          ),
+          floatingActionButton: FloatingActionButton(onPressed: () {
+            log("message");
+            context
+                .read<TodoCubit>()
+                .addTodo(TodoModel(name: "name", dis: "dis"));
+          }),
         ),
       ),
     );
